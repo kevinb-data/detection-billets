@@ -4,16 +4,19 @@
 __all__ = []
 
 # %% test_streamlit.ipynb 3
+pip install streamlit_jupyter
+
+# %% test_streamlit.ipynb 4
 from datetime import datetime
 
 import streamlit as st
 
-from streamlit_jupyter import StreamlitPatcher, tqdm
-
-# %% test_streamlit.ipynb 5
-st.title("Example")
+# from streamlit_jupyter import StreamlitPatcher, tqdm
 
 # %% test_streamlit.ipynb 6
+st.title("Example")
+
+# %% test_streamlit.ipynb 7
 st.markdown(
     """
 
