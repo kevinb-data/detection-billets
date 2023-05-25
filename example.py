@@ -11,7 +11,7 @@ import streamlit as st
 # from streamlit_jupyter import StreamlitPatcher, tqdm
 
 # %% test_streamlit.ipynb 5
-st.title("Example")
+st.title("Détection de faux billets 💵")
 
 # %% test_streamlit.ipynb 6
 st.markdown(
