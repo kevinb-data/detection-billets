@@ -23,3 +23,9 @@ If you're seeing this in jupyter, then it's working!
 
 """
 )
+
+# %% test_streamlit.ipynb 7
+st.write('''
+# Bienvenue
+Hello
+''')
