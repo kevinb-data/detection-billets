@@ -26,17 +26,11 @@ if uploaded_file is not None:
     df = pd.read_csv(uploaded_file, encoding='utf-8', sep=';')
 
 else:
-    st.title("⚠️ Attention, pas de fichier en input")
+    st.title("⚠️ Attention, veuillez déposer un fichier")
 
 st.sidebar.header("Les paramètres du billet à l'étude")
 
 def user_input():
-#     diagonal = st.sidebar.slider('La diagonale du billet', 171.04, 173.01, 173.01)
-#     height_left = st.sidebar.slider('La hauteur gauche du billet', 103.14, 104.88, 104.88)
-#     height_right = st.sidebar.slider('La hauteur droite du billet', 102.82, 104.95, 104.95)
-#     margin_low = st.sidebar.slider('La marge basse du billet', 2.98, 6.90, 6.90)
-#     margin_up = st.sidebar.slider('La marge haute du billet', 2.27, 3.91, 3.91)
-#     length = st.sidebar.slider('La longueur du billet', 109.49, 114.40, 114.40)
 
     diagonal = st.sidebar.selectbox('la diagonale du billet', options=df['diagonal'].values, index=0)
     height_left = st.sidebar.selectbox('la hauteur gauche du billet', options=df['height_left'].values, index=0)
@@ -58,10 +52,10 @@ def user_input():
     
     return billet_parametres
 
-df=user_input()
+df_=user_input()
 
-st.subheader('On veut trouver si notre billet est vrai ou faux')
-st.write(df.iloc[:,0:6])
+st.subheader('On veut trouver si notre billet (avec les caractéristiques suivantes) est vrai ou faux')
+st.write(df_.iloc[:,0:6])
 
 
 st.subheader('La prédiction du billet est:')
