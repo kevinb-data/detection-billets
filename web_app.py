@@ -3,17 +3,13 @@
 # %% auto 0
 __all__ = []
 
-# %% web_app.ipynb 4
+# %% web_app.ipynb 6
 from datetime import datetime
 
 import streamlit as st
+import pandas as pd
 
-# from streamlit_jupyter import StreamlitPatcher, tqdm
-
-# %% web_app.ipynb 5
 st.title("Détection de faux billets 💵")
-
-# %% web_app.ipynb 6
 st.markdown(
     """
 
@@ -24,13 +20,12 @@ Veuillez svp faire votre sélection au sein des variables en side-bar pour obten
 
 """
 )
-
-# %% web_app.ipynb 7
 st.sidebar.header("Les paramètres du billet à l'étude")
 
-# %% web_app.ipynb 8
+
 def user_input():
-    diagonal = st.sidebar.slider('La diagonale du billet', 171.04, 173.01, 173.01)
+#     diagonal = st.sidebar.slider('La diagonale du billet', 171.04, 173.01, 173.01)
+    diagonal = st.selectbox('la diagonale du billet', options=[df['diagonal'].values], index=0)
     height_left = st.sidebar.slider('La hauteur gauche du billet', 103.14, 104.88, 104.88)
     height_right = st.sidebar.slider('La hauteur droite du billet', 102.82, 104.95, 104.95)
     margin_low = st.sidebar.slider('La marge basse du billet', 2.98, 6.90, 6.90)
@@ -45,14 +40,15 @@ def user_input():
         'length': length
     }
     
-    billet_parametres=pd.DataFrame(data,index=[0])
+    billet_parametres=pd.DataFrame(data)
     
     return billet_parametres
 
 df=user_input()
 
 st.subheader('On veut trouver si notre billet est vrai ou faux')
-st.write(df)
+st.write(df.iloc[:,0:6])
+
 
 st.subheader('La prédiction du billet est:')
-st.write(dataframe[''])
+st.write(df.iloc[:,7:10])
