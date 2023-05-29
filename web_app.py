@@ -4,10 +4,37 @@
 __all__ = []
 
 # %% web_app.ipynb 6
+# variable : fichier
+# Le fichier est à déposer toujours dans le même dossier racine
+# Indication 1 : Remplir ici le nom du fichier que l'on veut analyser
+# ----------------------------------------------------------------------------------
+fichier = 'dataframe_final_20230529.csv'                                                #|
+# ----------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------
+pred = 'resultat_billets_20230529.csv'                                            #|
+# ----------------------------------------------------------------------------------
+
+# Chemin du fichier (do not modify without prior authorization)
+path = '/Users/Kévin/Downloads/OPENCLASSROOM/P10/'
+# Définition du chemin complet du fichier (do not modify without prior authorization)
+file = (f'{path.format(path=path)}{fichier.format(fichier=fichier)}')
+# Définition du chemin complet du fichier (do not modify without prior authorization)
+predict = (f'{path.format(path=path)}{pred.format(pred=pred)}')
+
+# Lecture du dataframe final en output de la détection
+df_final = pd.read_csv(file, encoding='utf-8', sep=';')
+# print('fichier final :\n',df_final)
+# Lecture des prédictions en output de la détection
+predict = pd.read_csv(predict, encoding='utf-8', sep=';')
+# print('fichier final :\n',predict)
+
+df = df_final.merge(predict, how="left", left_on="id", right_on="id")
+
 from datetime import datetime
 
 import streamlit as st
 import pandas as pd
+
 
 st.title("Détection de faux billets 💵")
 st.markdown(
@@ -26,18 +53,18 @@ st.sidebar.header("Les paramètres du billet à l'étude")
 def user_input():
 #     diagonal = st.sidebar.slider('La diagonale du billet', 171.04, 173.01, 173.01)
     diagonal = st.selectbox('la diagonale du billet', options=[df['diagonal'].values], index=0)
-    height_left = st.sidebar.slider('La hauteur gauche du billet', 103.14, 104.88, 104.88)
-    height_right = st.sidebar.slider('La hauteur droite du billet', 102.82, 104.95, 104.95)
-    margin_low = st.sidebar.slider('La marge basse du billet', 2.98, 6.90, 6.90)
-    margin_up = st.sidebar.slider('La marge haute du billet', 2.27, 3.91, 3.91)
-    length = st.sidebar.slider('La diagonale du billet', 109.49, 114.40, 114.40)
+#     height_left = st.sidebar.slider('La hauteur gauche du billet', 103.14, 104.88, 104.88)
+#     height_right = st.sidebar.slider('La hauteur droite du billet', 102.82, 104.95, 104.95)
+#     margin_low = st.sidebar.slider('La marge basse du billet', 2.98, 6.90, 6.90)
+#     margin_up = st.sidebar.slider('La marge haute du billet', 2.27, 3.91, 3.91)
+#     length = st.sidebar.slider('La diagonale du billet', 109.49, 114.40, 114.40)
     data={
         'diagonal':diagonal,
-        'height_left': height_left,
-        'height_right': height_right,
-        'margin_low': margin_low,
-        'margin_up': margin_up,
-        'length': length
+#         'height_left': height_left,
+#         'height_right': height_right,
+#         'margin_low': margin_low,
+#         'margin_up': margin_up,
+#         'length': length
     }
     
     billet_parametres=pd.DataFrame(data)
