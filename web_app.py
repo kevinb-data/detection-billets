@@ -26,10 +26,10 @@ Veuillez svp faire votre sélection au sein des variables en side-bar pour obten
 uploaded_file = st.sidebar.file_uploader(label="Upload your Excel file", type = ['csv'])
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file, encoding='utf-8', sep=';')
-    st.write(df)
+#     st.write(df)
 #     st.dataframe(df,3000,500)
 else:
-    st.write("pas de fichier en input")
+    st.write("⚠️ Attention, pas de fichier en input")
 
 st.sidebar.header("Les paramètres du billet à l'étude")
 
