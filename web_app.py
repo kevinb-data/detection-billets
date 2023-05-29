@@ -35,7 +35,7 @@ st.sidebar.header("Les paramètres du billet à l'étude")
 
 def user_input():
 #     diagonal = st.sidebar.slider('La diagonale du billet', 171.04, 173.01, 173.01)
-    diagonal = st.selectbox('la diagonale du billet', options=([df['diagonal'].values]), index=0)
+    diagonal = st.selectbox('la diagonale du billet', options=[df['diagonal'].values.tolist()], index=0)
 #     height_left = st.sidebar.slider('La hauteur gauche du billet', 103.14, 104.88, 104.88)
 #     height_right = st.sidebar.slider('La hauteur droite du billet', 102.82, 104.95, 104.95)
 #     margin_low = st.sidebar.slider('La marge basse du billet', 2.98, 6.90, 6.90)
