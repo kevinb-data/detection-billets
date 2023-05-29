@@ -31,6 +31,10 @@ else:
 st.sidebar.header("Les paramètres du billet à l'étude")
 
 def user_input():
+    
+#     uploaded_file = st.sidebar.file_uploader(label="Upload your Excel file", type = ['csv'])
+#     if uploaded_file is not None:
+#         df = pd.read_csv(uploaded_file, encoding='utf-8', sep=';')
 
     diagonal = st.sidebar.selectbox('la diagonale du billet', options=df['diagonal'].values, index=0)
     height_left = st.sidebar.selectbox('la hauteur gauche du billet', options=df['height_left'].values, index=0)
@@ -60,6 +64,4 @@ st.write(df_.iloc[:,0:6])
 
 st.subheader('La prédiction du billet est:')
 st.write(df.iloc[:,7:10])
-st.write(df.iloc[:,7:10] & df.loc['diagonal']==df_.loc['diagonal'] & df.loc['height_left']==df_.loc['height_left']
-        & df.loc['height_right']==df_.loc['height_right'] & df.loc['margin_low']==df_.loc['margin_low']
-        & df.loc['margin_up']==df_.loc['margin_up'] & df.loc['length']==df_.loc['length'])
+st.write(df.iloc[:,7:10] & df.loc['diagonal']==df_.loc['diagonal'] & df.loc['height_left']==df_.loc['height_left'] & df.loc['height_right']==df_.loc['height_right'] & df.loc['margin_low']==df_.loc['margin_low'] & df.loc['margin_up']==df_.loc['margin_up'] & df.loc['length']==df_.loc['length'])
