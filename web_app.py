@@ -4,6 +4,8 @@
 __all__ = []
 
 # %% web_app.ipynb 6
+import pandas as pd
+
 # variable : fichier
 # Le fichier est à déposer toujours dans le même dossier racine
 # Indication 1 : Remplir ici le nom du fichier que l'on veut analyser
@@ -33,7 +35,7 @@ df = df_final.merge(predict, how="left", left_on="id", right_on="id")
 from datetime import datetime
 
 import streamlit as st
-import pandas as pd
+
 
 
 st.title("Détection de faux billets 💵")
