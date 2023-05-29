@@ -54,6 +54,8 @@ def user_input():
     
     return billet_parametres
 
+df=user_input()
+
 st.subheader('On veut trouver si notre billet est vrai ou faux')
 st.write(df.iloc[:,0:6])
 
