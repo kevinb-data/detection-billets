@@ -5,6 +5,17 @@ __all__ = []
 
 # %% web_app.ipynb 6
 import pandas as pd
+import streamlit as st
+
+file = 'dataframe_final_20230529.csv'
+
+df_final = pd.read_csv(file, encoding='utf-8', sep=';')
+
+st.write(df)
+
+# %% web_app.ipynb 7
+import pandas as pd
+
 
 # variable : fichier
 # Le fichier est à déposer toujours dans le même dossier racine
