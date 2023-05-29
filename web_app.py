@@ -17,7 +17,7 @@ pred = 'resultat_billets_20230529.csv'                                          
 # ----------------------------------------------------------------------------------
 
 # Chemin du fichier (do not modify without prior authorization)
-path = 'C:/Users/Kévin/Downloads/OPENCLASSROOM/P10/'
+path = r'C:/Users/Kévin/Downloads/OPENCLASSROOM/P10/'
 # Définition du chemin complet du fichier (do not modify without prior authorization)
 file = (f'{path.format(path=path)}{fichier.format(fichier=fichier)}')
 # Définition du chemin complet du fichier (do not modify without prior authorization)
