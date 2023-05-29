@@ -3,7 +3,7 @@
 # %% auto 0
 __all__ = []
 
-# %% web_app.ipynb 6
+# %% web_app.ipynb 5
 import pandas as pd
 import streamlit as st
 from datetime import datetime
@@ -59,5 +59,6 @@ st.write(df_.iloc[:,0:6])
 
 
 st.subheader('La prédiction du billet est:')
-st.write(df.iloc[:,7:10])
-
+st.write(df.iloc[:,7:10] & df.loc['diagonal']==df_.loc['diagonal'].values & df.loc['height_left']==df_.loc['height_left']
+        & df.loc['height_right']==df_.loc['height_right'] & df.loc['margin_low']==df_.loc['margin_low']
+        & df.loc['margin_up']==df_.loc['margin_up'] & df.loc['length']==df_.loc['length'])
