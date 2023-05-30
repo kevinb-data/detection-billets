@@ -10,7 +10,6 @@ import streamlit as st
 from datetime import datetime
 import json
 import joblib
-from sklearn.linear_model import LogisticRegression
 
 
 st.title("Détection de faux billets 💵")
