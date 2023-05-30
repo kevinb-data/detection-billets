@@ -18,7 +18,7 @@ Je disposais uniquement d'un jeu de données de 1500 lignes avec les variables s
 
 - is_genuine : True ou False pour nous indiquer si les billets sont faux ou vrais.
 
-
+ 
 
 De ce jeu, nous devons construire un modèle de machine learning adéquat afin de détecter la véracité d'un billet donné hors de ce jeu initial.
 
