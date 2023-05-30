@@ -32,7 +32,7 @@ Les différentes sources de données produites durant ce projet sont présentes 
 
 Les différentes parties de code produites durant ce projet sont présentes sous 'Code' dans ce dépôt.
 
-Afin de vous permettre de tester la web app vous-mêmes, vous pouvez à n'importe quel moment y accéder via ce lien :
+Afin de vous permettre de tester la web app vous-même, vous pouvez à n'importe quel moment y accéder via ce lien :
 
 ##########################################################################
 
@@ -42,6 +42,6 @@ Afin de vous permettre de tester la web app vous-mêmes, vous pouvez à n'import
 
 __________________________________________________________________________________________________________
 
-Il vous faudra également y déposer le fichier 'dataframe_final_20230530.csv' dans le dossier 'Sources' de ce dépôt ainsi que le modèle nommé 'modele_regression.joblib' dans le dossier 'Code' de ce dépôt.
+Il vous faudra également y déposer le fichier 'dataframe_final_20230530.csv' présent dans le dossier 'Sources' de ce dépôt ainsi que le modèle nommé 'modele_regression.joblib' présent dans le dossier 'Code' de ce dépôt.
 
-Grâce au modèle de prédiction, vous pourrez alors utiliser les boutons à disposition dans la web application afin d'être en mesure de découvrir si votre billet, en fonction des valeurs en entrée que vous lui avez imputées, est vrai ou faux
+Grâce au modèle de prédiction et à la web application, vous pourrez alors utiliser les boutons à disposition afin d'être en mesure de découvrir si votre billet, en fonction des valeurs en entrée que vous lui avez imputées, est vrai ou faux
