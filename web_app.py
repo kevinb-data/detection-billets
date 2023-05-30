@@ -29,8 +29,9 @@ else:
     st.title("⚠️ Attention, veuillez déposer un fichier")
 
 uploaded_model = st.sidebar.file_uploader(label="Déposez le modèle ici")
+model = open(uploaded_model, 'rb')
 
-st.write(uploaded_model)
+st.write(model)
 
 st.sidebar.header("Les paramètres du billet à l'étude")
 
