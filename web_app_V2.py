@@ -33,10 +33,10 @@ else:
 uploaded_model = st.sidebar.file_uploader(label="Déposez le fichier JSON 'model_trained' ici", type = ['json'])
 if uploaded_model is not None:
     
-    export_dict = joblib.load(uploaded_model)
-#     model_path = export_dict["0"]
-#     regression = joblib.load(model_path)
-    regression = export_dict["0"]
+    export_dict = json.load(uploaded_model)
+    model_path = export_dict["0"]
+    regression = joblib.load(model_path)
+#     regression = export_dict["0"]
     st.write(regression)
     
 #     json=pd.read_json(file)
