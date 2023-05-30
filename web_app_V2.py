@@ -77,30 +77,33 @@ df_=user_input()
 
 st.subheader('On veut trouver si notre billet (avec les caractéristiques suivantes) est vrai ou faux')
 st.write(df_.iloc[:,0:6])
+st.write(df_)
 
-#Standardisation des valeurs
-X_csv = df_.drop(['id'], axis=1)
-scaler = StandardScaler()
-scaler.fit(df_)
-X_csv_scaled = scaler.transform(df_)
-X_csv_std = pd.DataFrame(X_csv_scaled, columns=df_.columns)
-st.write(X_csv_std)
+# #Standardisation des valeurs
+# # X_csv = df_.drop(['id'], axis=1)
+# scaler = StandardScaler()
+# scaler.fit(df_)
+# X_csv_scaled = scaler.transform(df_)
+# X_csv_std = pd.DataFrame(X_csv_scaled, columns=df_.columns)
+# st.write(X_csv_std)
 
-# Regression logistique avec le modèle déjà entraîné (scikit-learn) du fichier pickle
-y_log = regression.predict(X_csv_std)
-predictions = []
-for i in range(0, len(y_log)):
-    predictions.append(y_log[i])
+# # Regression logistique avec le modèle déjà entraîné (scikit-learn) du fichier pickle
+# y_log = regression.predict(X_csv_std)
+# predictions = []
+# for i in range(0, len(y_log)):
+#     predictions.append(y_log[i])
 
-predictions = pd.concat([
-    pd.DataFrame(
-    [predictions]).rename(index={0: 'Prédiction'}).T.replace(
-    {False: 'Faux billet', True: 'Vrai billet'}),
-    pd.DataFrame(
-    regression.predict_proba(X_csv_std)).rename(
-    columns={0: 'Probabilité de faux', 1: 'Probabilité de vrai'})], axis=1)
-# predictions['id'] = dataframe['id'].unique()
+# predictions = pd.concat([
+#     pd.DataFrame(
+#     [predictions]).rename(index={0: 'Prédiction'}).T.replace(
+#     {False: 'Faux billet', True: 'Vrai billet'}),
+#     pd.DataFrame(
+#     regression.predict_proba(X_csv_std)).rename(
+#     columns={0: 'Probabilité de faux', 1: 'Probabilité de vrai'})], axis=1)
+# # predictions['id'] = dataframe['id'].unique()
 
-st.subheader('La prédiction du billet est:')
-st.write(predictions)
+# st.subheader('La prédiction du billet est:')
+# st.write(predictions)
 
+y_pred = regression.predict(df_)
+st.write(y_pred)
