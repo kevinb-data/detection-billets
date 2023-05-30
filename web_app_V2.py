@@ -34,29 +34,7 @@ else:
 uploaded_model = st.sidebar.file_uploader(label="Déposez le fichier JSON 'model_trained' ici")
 if uploaded_model is not None:
     regression = joblib.load(uploaded_model)
-    st.write(regression)
-    
-    
-#     model_params = json.load(file)
-
-#     regression = LogisticRegression()
-#     regression.coef_ = np.array(model_params['coef_'])
-#     regression.intercept_ = np.array(model_params['intercept_'])
-#     st.write(regression.intercept_)
-    
-#     export_dict = json.load(uploaded_model)
-#     model_path = export_dict["0"]
-#     regression = joblib.load(model_path)
-# #     regression = export_dict["0"]
 #     st.write(regression)
-    
-#     json=pd.read_json(file)
-#     df=pd.json_normalize(
-#     # Charger le dictionnaire à partir du fichier JSON
-#     with open(uploaded_model, "r") as file:
-#         export_dict = json.load(file)
-#     model_path = export_dict["0"]
-#     regression = joblib.load(model_path)
     
 
 else:
@@ -66,13 +44,19 @@ st.sidebar.header("Les paramètres du billet à l'étude")
 
 def user_input():
     
+    diagonal = st.sidebar.slider('Diagonale du billet', 171.04, 173.01, 171.04)
+    height_left = st.sidebar.selectbox('Hauteur gauche du billet', 103.14, 104.88, 103.14)
+    height_right = st.sidebar.selectbox('Hauteur droite du billet', 102.82, 104.95, 102.82)
+    margin_low = st.sidebar.selectbox('Marge basse du billet', 2.98, 6.90, 2.98)
+    margin_up = st.sidebar.selectbox('Marge haute du billet', 2.27, 3.91, 2.27)
+    length = st.sidebar.selectbox('Longueur du billet', 109.49, 114.44, 109.49)
 
-    diagonal = st.sidebar.selectbox('Diagonale du billet', options=df['diagonal'].values, index=0)
-    height_left = st.sidebar.selectbox('Hauteur gauche du billet', options=df['height_left'].values, index=0)
-    height_right = st.sidebar.selectbox('Hauteur droite du billet', options=df['height_right'].values, index=0)
-    margin_low = st.sidebar.selectbox('Marge basse du billet', options=df['margin_low'].values, index=0)
-    margin_up = st.sidebar.selectbox('Marge haute du billet', options=df['margin_up'].values, index=0)
-    length = st.sidebar.selectbox('Longueur du billet', options=df['length'].values, index=0)
+#     diagonal = st.sidebar.selectbox('Diagonale du billet', options=df['diagonal'].values, index=0)
+#     height_left = st.sidebar.selectbox('Hauteur gauche du billet', options=df['height_left'].values, index=0)
+#     height_right = st.sidebar.selectbox('Hauteur droite du billet', options=df['height_right'].values, index=0)
+#     margin_low = st.sidebar.selectbox('Marge basse du billet', options=df['margin_low'].values, index=0)
+#     margin_up = st.sidebar.selectbox('Marge haute du billet', options=df['margin_up'].values, index=0)
+#     length = st.sidebar.selectbox('Longueur du billet', options=df['length'].values, index=0)
     
     data={
         'diagonal':diagonal,
@@ -93,8 +77,31 @@ df_=user_input()
 st.subheader('On veut trouver si notre billet (avec les caractéristiques suivantes) est vrai ou faux')
 st.write(df_.iloc[:,0:6])
 
-st.subheader('La prédiction du billet est:')
+#Standardisation des valeurs
+# X_csv = df_.drop(['id'], axis=1)
+scaler = StandardScaler()
+scaler.fit(df_)
+X_csv_scaled = scaler.transform(df_)
+X_csv_std = pd.DataFrame(X_csv_scaled, columns=df_.columns)
 
-merged_df = df.merge(df_, on=['diagonal', 'height_left', 'height_right', 'margin_low', 'margin_up', 'length'], how='inner')
-selected_columns = merged_df.iloc[:,7:11]
-st.write(selected_columns)
+# Regression logistique avec le modèle déjà entraîné (scikit-learn) du fichier pickle
+y_log = regression.predict(X_csv_std)
+predictions = []
+for i in range(0, len(y_log)):
+    predictions.append(y_log[i])
+
+predictions = pd.concat([
+    pd.DataFrame(
+    [predictions]).rename(index={0: 'Prédiction'}).T.replace(
+    {False: 'Faux billet', True: 'Vrai billet'}),
+    pd.DataFrame(
+    regression.predict_proba(X_csv_std)).rename(
+    columns={0: 'Probabilité de faux', 1: 'Probabilité de vrai'})], axis=1)
+# predictions['id'] = dataframe['id'].unique()
+
+st.subheader('La prédiction du billet est:')
+st.write(predictions)
+
+# merged_df = df.merge(df_, on=['diagonal', 'height_left', 'height_right', 'margin_low', 'margin_up', 'length'], how='inner')
+# selected_columns = merged_df.iloc[:,7:11]
+# st.write(selected_columns)
