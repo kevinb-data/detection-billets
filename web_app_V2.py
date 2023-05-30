@@ -79,7 +79,7 @@ st.subheader('On veut trouver si notre billet (avec les caractéristiques suivan
 st.write(df_.iloc[:,0:6])
 
 #Standardisation des valeurs
-# X_csv = df_.drop(['id'], axis=1)
+X_csv = df_.drop(['id'], axis=1)
 scaler = StandardScaler()
 scaler.fit(df_)
 X_csv_scaled = scaler.transform(df_)
