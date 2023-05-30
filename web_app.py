@@ -63,7 +63,9 @@ df_.sort_index(inplace=True)
 
 st.subheader('On veut trouver si notre billet (avec les caractéristiques suivantes) est vrai ou faux')
 st.write(df_.iloc[:,0:6])
-# st.write(df)
+st.write(diagonal)
+st.write(df_.describe)
+st.write(df_.info)
 
 
 st.subheader('La prédiction du billet est:')
