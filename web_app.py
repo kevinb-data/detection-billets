@@ -28,10 +28,10 @@ if uploaded_file is not None:
 else:
     st.title("⚠️ Attention, veuillez déposer un fichier")
 
-uploaded_model = st.sidebar.file_uploader(label="Déposez le modèle ici")
-model = open(uploaded_model, 'rb')
+# uploaded_model = st.sidebar.file_uploader(label="Déposez le modèle ici")
+# model = open(uploaded_model, 'rb')
 
-st.write(model)
+# st.write(model)
 
 st.sidebar.header("Les paramètres du billet à l'étude")
 
