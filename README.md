@@ -23,6 +23,7 @@ ________________________________________________________________________________
 De ce jeu, nous devons construire un modèle de machine learning adéquat afin de détecter la véracité d'un billet donné hors de ce jeu initial.
 
 J'ai donc développé un script en python qui a plusieurs résultats : un modèle de regression logistique afin de prédire la valeur du billet (Vrai ou Faux) en fonction des différentes variables à disposition.
+
 J'ai également développé à la suite de ce script une web app grâce à streamlit, via jupyter notebook
 
 __________________________________________________________________________________________________________
