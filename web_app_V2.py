@@ -25,7 +25,7 @@ Veuillez svp déposer le fichier CSV et le modèle JSON avant de pouvoir faire v
 """
 )
 
-uploaded_file = st.sidebar.file_uploader(label="Déposez le fichier CSV 'jeu_final_predictions' ici", type = ['csv'])
+uploaded_file = st.sidebar.file_uploader(label="Déposez le fichier CSV 'dataframe_final' ici", type = ['csv'])
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file, encoding='utf-8', sep=';')
 
@@ -84,6 +84,7 @@ scaler = StandardScaler()
 scaler.fit(df_)
 X_csv_scaled = scaler.transform(df_)
 X_csv_std = pd.DataFrame(X_csv_scaled, columns=df_.columns)
+st.write(X_csv_std)
 
 # Regression logistique avec le modèle déjà entraîné (scikit-learn) du fichier pickle
 y_log = regression.predict(X_csv_std)
@@ -103,6 +104,3 @@ predictions = pd.concat([
 st.subheader('La prédiction du billet est:')
 st.write(predictions)
 
-# merged_df = df.merge(df_, on=['diagonal', 'height_left', 'height_right', 'margin_low', 'margin_up', 'length'], how='inner')
-# selected_columns = merged_df.iloc[:,7:11]
-# st.write(selected_columns)
