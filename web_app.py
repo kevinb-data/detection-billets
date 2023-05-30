@@ -58,6 +58,9 @@ def user_input():
 
 df_=user_input()
 
+df.reset_index(drop=True, inplace=True)
+df_.reset_index(drop=True, inplace=True)
+
 st.subheader('On veut trouver si notre billet (avec les caractéristiques suivantes) est vrai ou faux')
 st.write(df_.iloc[:,0:6])
 # st.write(df)
