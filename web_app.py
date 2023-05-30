@@ -16,32 +16,33 @@ st.markdown(
 Bienvenue dans l'application web simplifiée de détection de faux billets.
 
 Cette application aide à prédire si un billet sera faux ou vrai selon ses caractéristiques.
-Veuillez svp faire votre sélection au sein des variables en side-bar pour obtenir votre résultat.
+Veuillez svp déposer le fichier CSV faire votre sélection au sein des variables en side-bar pour obtenir votre résultat.
 
 """
 )
 
-uploaded_file = st.sidebar.file_uploader(label="Upload your Excel file", type = ['csv'])
+uploaded_file = st.sidebar.file_uploader(label="Déposez le fichier CSV 'jeu_final_predictions' ici", type = ['csv'])
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file, encoding='utf-8', sep=';')
 
 else:
     st.title("⚠️ Attention, veuillez déposer un fichier")
 
+uploaded_model = st.sidebar.file_uploader(label="Déposez le modèle ici")
+
+st.write(uploaded_model)
+
 st.sidebar.header("Les paramètres du billet à l'étude")
 
 def user_input():
     
-#     uploaded_file = st.sidebar.file_uploader(label="Upload your Excel file", type = ['csv'])
-#     if uploaded_file is not None:
-#         df = pd.read_csv(uploaded_file, encoding='utf-8', sep=';')
 
-    diagonal = st.sidebar.selectbox('la diagonale du billet', options=df['diagonal'].values, index=0)
-    height_left = st.sidebar.selectbox('la hauteur gauche du billet', options=df['height_left'].values, index=0)
-    height_right = st.sidebar.selectbox('la hauteur droite du billet', options=df['height_right'].values, index=0)
-    margin_low = st.sidebar.selectbox('la marge basse du billet', options=df['margin_low'].values, index=0)
-    margin_up = st.sidebar.selectbox('la marge haute du billet', options=df['margin_up'].values, index=0)
-    length = st.sidebar.selectbox('la longueur du billet', options=df['length'].values, index=0)
+    diagonal = st.sidebar.selectbox('Diagonale du billet', options=df['diagonal'].values, index=0)
+    height_left = st.sidebar.selectbox('Hauteur gauche du billet', options=df['height_left'].values, index=0)
+    height_right = st.sidebar.selectbox('Hauteur droite du billet', options=df['height_right'].values, index=0)
+    margin_low = st.sidebar.selectbox('Marge basse du billet', options=df['margin_low'].values, index=0)
+    margin_up = st.sidebar.selectbox('Marge haute du billet', options=df['margin_up'].values, index=0)
+    length = st.sidebar.selectbox('Longueur du billet', options=df['length'].values, index=0)
     
     data={
         'diagonal':diagonal,
@@ -58,22 +59,12 @@ def user_input():
 
 df_=user_input()
 
-# df.sort_index(inplace=True)
-# df_.sort_index(inplace=True)
 
 st.subheader('On veut trouver si notre billet (avec les caractéristiques suivantes) est vrai ou faux')
 st.write(df_.iloc[:,0:6])
-# st.write(df_.diagonal)
-# st.write(df_.describe)
-# st.write(df_.info)
-
 
 st.subheader('La prédiction du billet est:')
-# st.write(df.iloc[:,7:10])
 
 merged_df = df.merge(df_, on=['diagonal', 'height_left', 'height_right', 'margin_low', 'margin_up', 'length'], how='inner')
 selected_columns = merged_df.iloc[:,7:11]
 st.write(selected_columns)
-# st.write(df.iloc[:,7:10] & df['diagonal']==df_['diagonal'] & df['height_left']==df_['height_left'] & df['height_right']==df_['height_right'] & df['margin_low']==df_['margin_low'] & df['margin_up']==df_['margin_up'] & df['length']==df_['length'])
-
-# st.write(df.loc[(df['diagonal']==df_.diagonal) & (df['height_left']==df_.height_left) & (df['height_right']==df_.height_right) & (df['margin_low']==df_.margin_low) & (df['margin_up']==df_.margin_up) & (df['length']==df_.length),'Prédiction':'Probabilité de vrai'])
