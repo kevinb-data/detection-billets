@@ -5,4 +5,4 @@ regex
 requests
 gspread
 joblib
-sklearn
+scikit-learn
