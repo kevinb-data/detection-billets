@@ -76,7 +76,7 @@ st.write(df_)
 scaler = StandardScaler()
 scaler.fit(df.drop(['id'], axis=1))
 X_csv_scaled = scaler.transform(df_)
-X_csv_std = pd.DataFrame(X_csv_scaled, columns=df.columns)
+X_csv_std = pd.DataFrame(X_csv_scaled, columns=(df.drop(['id'], axis=1)).columns)
 st.write(X_csv_scaled)
 st.write(X_csv_std)
 
