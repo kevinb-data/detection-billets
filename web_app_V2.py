@@ -5,10 +5,12 @@ __all__ = []
 
 # %% web_app_V2.ipynb 5
 import pandas as pd
+import numpy as np
 import streamlit as st
 from datetime import datetime
 import json
 import joblib
+from sklearn.linear_model import LogisticRegression
 
 
 st.title("Détection de faux billets 💵")
@@ -30,14 +32,24 @@ if uploaded_file is not None:
 else:
     st.title("⚠️ Attention, veuillez déposer un fichier")
 
-uploaded_model = st.sidebar.file_uploader(label="Déposez le fichier JSON 'model_trained' ici", type = ['json'])
+uploaded_model = st.sidebar.file_uploader(label="Déposez le fichier JSON 'model_trained' ici")
 if uploaded_model is not None:
-    
-    export_dict = json.load(uploaded_model)
-    model_path = export_dict["0"]
-    regression = joblib.load(model_path)
-#     regression = export_dict["0"]
+    regression = joblib.load(uploaded_model)
     st.write(regression)
+    
+    
+#     model_params = json.load(file)
+
+#     regression = LogisticRegression()
+#     regression.coef_ = np.array(model_params['coef_'])
+#     regression.intercept_ = np.array(model_params['intercept_'])
+#     st.write(regression.intercept_)
+    
+#     export_dict = json.load(uploaded_model)
+#     model_path = export_dict["0"]
+#     regression = joblib.load(model_path)
+# #     regression = export_dict["0"]
+#     st.write(regression)
     
 #     json=pd.read_json(file)
 #     df=pd.json_normalize(
