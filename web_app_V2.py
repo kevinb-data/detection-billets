@@ -74,7 +74,7 @@ st.write(df_)
 #Standardisation des valeurs
 # X_csv = df_.drop(['id'], axis=1)
 scaler = StandardScaler()
-scaler.fit(df)
+scaler.fit(df.drop(['id'], axis=1))
 X_csv_scaled = scaler.transform(df_)
 X_csv_std = pd.DataFrame(X_csv_scaled, columns=df.columns)
 st.write(X_csv_scaled)
