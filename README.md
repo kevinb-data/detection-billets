@@ -6,17 +6,17 @@ Le sujet était d'arriver à détecter des faux billets en python, avec un pourc
 
 Je disposais uniquement d'un jeu de données de 1500 lignes avec les variables suivantes :
 
-diagonal : la diagonale du billet
+- diagonal : la diagonale du billet
 
-height_left : la hauteur gauche du billet
+- height_left : la hauteur gauche du billet
 
-height_right : la hauteur droite du billet
+- height_right : la hauteur droite du billet
 
-margin_low : la marge basse du billet
+- margin_low : la marge basse du billet
 
-margin_up : la marge haute du billet
+- margin_up : la marge haute du billet
 
-is_genuine : True ou False pour nous indiquer si les billets sont faux ou vrais.
+- is_genuine : True ou False pour nous indiquer si les billets sont faux ou vrais.
 
 
 De ce jeu, nous devons construire un modèle de machine learning adéquat afin de détecter la véracité d'un billet donné hors de ce jeu initial.
