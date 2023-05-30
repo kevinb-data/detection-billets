@@ -71,7 +71,9 @@ st.write(df_.iloc[:,0:6])
 st.subheader('La prédiction du billet est:')
 # st.write(df.iloc[:,7:10])
 
-
+merged_df = df.merge(df_, on=['diagonal', 'height_left', 'height_right', 'margin_low', 'margin_up', 'length'], how='inner')
+selected_columns = merged_df.iloc[:,7:11]
+st.write(selected_columns)
 # st.write(df.iloc[:,7:10] & df['diagonal']==df_['diagonal'] & df['height_left']==df_['height_left'] & df['height_right']==df_['height_right'] & df['margin_low']==df_['margin_low'] & df['margin_up']==df_['margin_up'] & df['length']==df_['length'])
 
-st.write(df.loc[(df['diagonal']==df_.diagonal) & (df['height_left']==df_.height_left) & (df['height_right']==df_.height_right) & (df['margin_low']==df_.margin_low) & (df['margin_up']==df_.margin_up) & (df['length']==df_.length),'Prédiction':'Probabilité de vrai'])
+# st.write(df.loc[(df['diagonal']==df_.diagonal) & (df['height_left']==df_.height_left) & (df['height_right']==df_.height_right) & (df['margin_low']==df_.margin_low) & (df['margin_up']==df_.margin_up) & (df['length']==df_.length),'Prédiction':'Probabilité de vrai'])
