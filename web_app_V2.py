@@ -8,6 +8,7 @@ import pandas as pd
 import streamlit as st
 from datetime import datetime
 import json
+import joblib
 
 
 st.title("Détection de faux billets 💵")
