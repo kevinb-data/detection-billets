@@ -58,14 +58,14 @@ def user_input():
 
 df_=user_input()
 
-df.sort_index(inplace=True)
-df_.sort_index(inplace=True)
+# df.sort_index(inplace=True)
+# df_.sort_index(inplace=True)
 
 st.subheader('On veut trouver si notre billet (avec les caractéristiques suivantes) est vrai ou faux')
 st.write(df_.iloc[:,0:6])
-st.write(df_.diagonal)
-st.write(df_.describe)
-st.write(df_.info)
+# st.write(df_.diagonal)
+# st.write(df_.describe)
+# st.write(df_.info)
 
 
 st.subheader('La prédiction du billet est:')
@@ -74,4 +74,4 @@ st.subheader('La prédiction du billet est:')
 
 # st.write(df.iloc[:,7:10] & df['diagonal']==df_['diagonal'] & df['height_left']==df_['height_left'] & df['height_right']==df_['height_right'] & df['margin_low']==df_['margin_low'] & df['margin_up']==df_['margin_up'] & df['length']==df_['length'])
 
-st.write(df.loc[(df['diagonal']==df_['diagonal']) & (df['height_left']==df_['height_left']) & (df['height_right']==df_['height_right']) & (df['margin_low']==df_['margin_low']) & (df['margin_up']==df_['margin_up']) & (df['length']==df_['length']),'Prédiction':'Probabilité de vrai'])
+st.write(df.loc[(df['diagonal']==df_.diagonal) & (df['height_left']==df_.height_left) & (df['height_right']==df_.height_right) & (df['margin_low']==df_.margin_low) & (df['margin_up']==df_.margin_up) & (df['length']==df_.length),'Prédiction':'Probabilité de vrai'])
