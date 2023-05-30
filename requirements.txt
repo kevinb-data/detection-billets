@@ -1,0 +1,7 @@
+altair
+pandas
+google
+regex
+requests
+gspread
+joblib
