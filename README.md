@@ -34,8 +34,13 @@ Les différentes parties de code produites durant ce projet sont présentes sous
 Afin de vous permettre de tester la web app vous-mêmes, vous pouvez à n'importe quel moment y accéder via ce lien :
 
 ##########################################################################
+
  https://kevinb-data-detection-billets-web-app-v2-c3vj01.streamlit.app/
+ 
 ##########################################################################
+
+__________________________________________________________________________________________________________
+
 Il vous faudra également y déposer le fichier 'dataframe_final_20230530.csv' dans le dossier 'Sources' de ce dépôt ainsi que le modèle nommé 'modele_regression.joblib' dans le dossier 'Code' de ce dépôt.
 
 Grâce au modèle de prédiction, vous pourrez alors utiliser les boutons à disposition dans la web application afin d'être en mesure de découvrir si votre billet, en fonction des valeurs en entrée que vous lui avez imputées, est vrai ou faux
