@@ -7,6 +7,7 @@ __all__ = []
 import pandas as pd
 import streamlit as st
 from datetime import datetime
+import json
 
 
 st.title("Détection de faux billets 💵")
