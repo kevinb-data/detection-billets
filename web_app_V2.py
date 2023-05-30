@@ -35,12 +35,11 @@ else:
 uploaded_model = st.sidebar.file_uploader(label="Déposez le fichier JSON 'model_trained' ici")
 if uploaded_model is not None:
     regression = joblib.load(uploaded_model)
-#     st.write(regression)
     
-
 else:
     st.title("⚠️ Attention, veuillez déposer un modèle")
 
+    
 st.sidebar.header("Les paramètres du billet à l'étude")
 
 def user_input():
@@ -51,13 +50,6 @@ def user_input():
     margin_low = st.sidebar.slider('Marge basse du billet', 2.98, 6.90, 2.98)
     margin_up = st.sidebar.slider('Marge haute du billet', 2.27, 3.91, 2.27)
     length = st.sidebar.slider('Longueur du billet', 109.49, 114.44, 109.49)
-
-#     diagonal = st.sidebar.selectbox('Diagonale du billet', options=df['diagonal'].values, index=0)
-#     height_left = st.sidebar.selectbox('Hauteur gauche du billet', options=df['height_left'].values, index=0)
-#     height_right = st.sidebar.selectbox('Hauteur droite du billet', options=df['height_right'].values, index=0)
-#     margin_low = st.sidebar.selectbox('Marge basse du billet', options=df['margin_low'].values, index=0)
-#     margin_up = st.sidebar.selectbox('Marge haute du billet', options=df['margin_up'].values, index=0)
-#     length = st.sidebar.selectbox('Longueur du billet', options=df['length'].values, index=0)
     
     data={
         'diagonal':diagonal,
@@ -72,20 +64,21 @@ def user_input():
     
     return billet_parametres
 
-df_=user_input()
+df_ = user_input()
 
 
 st.subheader('On veut trouver si notre billet (avec les caractéristiques suivantes) est vrai ou faux')
 st.write(df_.iloc[:,0:6])
 st.write(df_)
 
-# #Standardisation des valeurs
-# # X_csv = df_.drop(['id'], axis=1)
-# scaler = StandardScaler()
-# scaler.fit(df_)
-# X_csv_scaled = scaler.transform(df_)
-# X_csv_std = pd.DataFrame(X_csv_scaled, columns=df_.columns)
-# st.write(X_csv_std)
+#Standardisation des valeurs
+# X_csv = df_.drop(['id'], axis=1)
+scaler = StandardScaler()
+scaler.fit(df_)
+X_csv_scaled = scaler.transform(df_)
+X_csv_std = pd.DataFrame(X_csv_scaled, columns=df_.columns)
+st.write(X_csv_scaled)
+st.write(X_csv_std)
 
 # # Regression logistique avec le modèle déjà entraîné (scikit-learn) du fichier pickle
 # y_log = regression.predict(X_csv_std)
@@ -105,5 +98,12 @@ st.write(df_)
 # st.subheader('La prédiction du billet est:')
 # st.write(predictions)
 
-y_pred = regression.predict(df_)
-st.write(y_pred)
+# Prédiction avec le modèle
+y_pred = regression.predict(X_csv_std)
+predictions = pd.DataFrame(y_pred, columns=['Prédiction'])
+predictions['Prédiction'] = predictions['Prédiction'].replace({False: 'Faux billet', True: 'Vrai billet'})
+predictions['Probabilité de faux'] = regression.predict_proba(X_csv_std)[:, 0]
+predictions['Probabilité de vrai'] = regression.predict_proba(X_csv_std)[:, 1]
+
+st.subheader('La prédiction du billet est:')
+st.write(predictions)
