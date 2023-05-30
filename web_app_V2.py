@@ -16,7 +16,7 @@ st.markdown(
 Bienvenue dans l'application web simplifiée de détection de faux billets.
 
 Cette application aide à prédire si un billet sera faux ou vrai selon ses caractéristiques.
-Veuillez svp déposer le fichier CSV avant de pouvoir faire votre sélection au sein des variables en side-bar pour obtenir votre résultat.
+Veuillez svp déposer le fichier CSV et le modèle JSON avant de pouvoir faire votre sélection au sein des variables en side-bar pour obtenir votre résultat.
 
 """
 )
@@ -28,13 +28,21 @@ if uploaded_file is not None:
 else:
     st.title("⚠️ Attention, veuillez déposer un fichier")
 
-uploaded_model = st.sidebar.file_uploader(label="Déposez le fichier CSV 'jeu_final_predictions' ici", type = ['json'])
+uploaded_model = st.sidebar.file_uploader(label="Déposez le fichier JSON 'model_trained' ici", type = ['json'])
 if uploaded_model is not None:
-    # Charger le dictionnaire à partir du fichier JSON
-    with open(uploaded_model, "r") as file:
-        export_dict = json.load(file)
+    
+    export_dict = json.load(uploaded_model)
     model_path = export_dict["0"]
     regression = joblib.load(model_path)
+    st.write(regression)
+    
+#     json=pd.read_json(file)
+#     df=pd.json_normalize(
+#     # Charger le dictionnaire à partir du fichier JSON
+#     with open(uploaded_model, "r") as file:
+#         export_dict = json.load(file)
+#     model_path = export_dict["0"]
+#     regression = joblib.load(model_path)
     
 
 else:
