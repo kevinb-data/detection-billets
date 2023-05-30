@@ -10,6 +10,7 @@ import streamlit as st
 from datetime import datetime
 import json
 import joblib
+from sklearn.preprocessing import StandardScaler
 
 
 st.title("Détection de faux billets 💵")
@@ -45,11 +46,11 @@ st.sidebar.header("Les paramètres du billet à l'étude")
 def user_input():
     
     diagonal = st.sidebar.slider('Diagonale du billet', 171.04, 173.01, 171.04)
-    height_left = st.sidebar.selectbox('Hauteur gauche du billet', 103.14, 104.88, 103.14)
-    height_right = st.sidebar.selectbox('Hauteur droite du billet', 102.82, 104.95, 102.82)
-    margin_low = st.sidebar.selectbox('Marge basse du billet', 2.98, 6.90, 2.98)
-    margin_up = st.sidebar.selectbox('Marge haute du billet', 2.27, 3.91, 2.27)
-    length = st.sidebar.selectbox('Longueur du billet', 109.49, 114.44, 109.49)
+    height_left = st.sidebar.slider('Hauteur gauche du billet', 103.14, 104.88, 103.14)
+    height_right = st.sidebar.slider('Hauteur droite du billet', 102.82, 104.95, 102.82)
+    margin_low = st.sidebar.slider('Marge basse du billet', 2.98, 6.90, 2.98)
+    margin_up = st.sidebar.slider('Marge haute du billet', 2.27, 3.91, 2.27)
+    length = st.sidebar.slider('Longueur du billet', 109.49, 114.44, 109.49)
 
 #     diagonal = st.sidebar.selectbox('Diagonale du billet', options=df['diagonal'].values, index=0)
 #     height_left = st.sidebar.selectbox('Hauteur gauche du billet', options=df['height_left'].values, index=0)
