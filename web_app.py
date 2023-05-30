@@ -65,4 +65,4 @@ st.write(df)
 
 st.subheader('La prédiction du billet est:')
 st.write(df.iloc[:,7:10])
-st.write(df.iloc[:,7:10] & df.loc['diagonal']==df_.loc['diagonal'] & df.loc['height_left']==df_.loc['height_left'] & df.loc['height_right']==df_.loc['height_right'] & df.loc['margin_low']==df_.loc['margin_low'] & df.loc['margin_up']==df_.loc['margin_up'] & df.loc['length']==df_.loc['length'])
+st.write(df.iloc[:,7:10] & df['diagonal']==df_['diagonal'] & df['height_left']==df_['height_left'] & df['height_right']==df_['height_right'] & df['margin_low']==df_['margin_low'] & df['margin_up']==df_['margin_up'] & df['length']==df_['length'])
