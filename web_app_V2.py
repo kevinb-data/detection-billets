@@ -3,7 +3,7 @@
 # %% auto 0
 __all__ = []
 
-# %% web_app_V2.ipynb 6
+# %% web_app_V2.ipynb 5
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -25,12 +25,12 @@ Veuillez svp déposer le fichier CSV et le modèle JSON avant de pouvoir faire v
 """
 )
 
-# uploaded_file = st.sidebar.file_uploader(label="Déposez le fichier CSV 'dataframe_final' ici", type = ['csv'])
-# if uploaded_file is not None:
-#     df = pd.read_csv(uploaded_file, encoding='utf-8', sep=';')
+uploaded_file = st.sidebar.file_uploader(label="Déposez le fichier CSV 'dataframe_final' ici (ou tout autre fichier CSV respectant la forme souhaitée)", type = ['csv'])
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file, encoding='utf-8', sep=';')
 
-# else:
-#     st.title("⚠️ Attention, veuillez déposer un fichier")
+else:
+    st.title("⚠️ Attention, veuillez déposer un fichier")
 
 uploaded_model = st.sidebar.file_uploader(label="Déposez le fichier JOBLIB 'modele_regression' ici")
 if uploaded_model is not None:
@@ -72,9 +72,9 @@ st.write(df_.iloc[:,0:6])
 
 #Standardisation des valeurs
 scaler = StandardScaler()
-scaler.fit(df_)
+scaler.fit(df.drop(['id'], axis=1))
 X_csv_scaled = scaler.transform(df_)
-X_csv_std = pd.DataFrame(X_csv_scaled, columns=(df_).columns)
+X_csv_std = pd.DataFrame(X_csv_scaled, columns=(df.drop(['id'], axis=1)).columns)
 
 # Prédiction avec le modèle
 y_pred = regression.predict(X_csv_std)
