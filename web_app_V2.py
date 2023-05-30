@@ -20,7 +20,7 @@ st.markdown(
 Bienvenue dans l'application web simplifiée de détection de faux billets.
 
 Cette application aide à prédire si un billet sera faux ou vrai selon ses caractéristiques.
-Veuillez svp déposer le fichier CSV et le modèle JSON avant de pouvoir faire votre sélection au sein des variables en side-bar pour obtenir votre résultat.
+Veuillez svp déposer le fichier CSV et le modèle JSON avant de pouvoir faire votre sélection au sein des variables en side-bar (gauche) pour obtenir votre résultat.
 
 """
 )
@@ -32,7 +32,7 @@ if uploaded_file is not None:
 else:
     st.title("⚠️ Attention, veuillez déposer un fichier")
 
-uploaded_model = st.sidebar.file_uploader(label="Déposez le fichier JSON 'model_trained' ici")
+uploaded_model = st.sidebar.file_uploader(label="Déposez le fichier JOBLIB 'modele_regression' ici")
 if uploaded_model is not None:
     regression = joblib.load(uploaded_model)
     
@@ -69,34 +69,12 @@ df_ = user_input()
 
 st.subheader('On veut trouver si notre billet (avec les caractéristiques suivantes) est vrai ou faux')
 st.write(df_.iloc[:,0:6])
-st.write(df_)
 
 #Standardisation des valeurs
-# X_csv = df_.drop(['id'], axis=1)
 scaler = StandardScaler()
 scaler.fit(df.drop(['id'], axis=1))
 X_csv_scaled = scaler.transform(df_)
 X_csv_std = pd.DataFrame(X_csv_scaled, columns=(df.drop(['id'], axis=1)).columns)
-st.write(X_csv_scaled)
-st.write(X_csv_std)
-
-# # Regression logistique avec le modèle déjà entraîné (scikit-learn) du fichier pickle
-# y_log = regression.predict(X_csv_std)
-# predictions = []
-# for i in range(0, len(y_log)):
-#     predictions.append(y_log[i])
-
-# predictions = pd.concat([
-#     pd.DataFrame(
-#     [predictions]).rename(index={0: 'Prédiction'}).T.replace(
-#     {False: 'Faux billet', True: 'Vrai billet'}),
-#     pd.DataFrame(
-#     regression.predict_proba(X_csv_std)).rename(
-#     columns={0: 'Probabilité de faux', 1: 'Probabilité de vrai'})], axis=1)
-# # predictions['id'] = dataframe['id'].unique()
-
-# st.subheader('La prédiction du billet est:')
-# st.write(predictions)
 
 # Prédiction avec le modèle
 y_pred = regression.predict(X_csv_std)
