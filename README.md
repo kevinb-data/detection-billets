@@ -18,12 +18,14 @@ Je disposais uniquement d'un jeu de données de 1500 lignes avec les variables s
 
 - is_genuine : True ou False pour nous indiquer si les billets sont faux ou vrais.
 
- 
+__________________________________________________________________________________________________________
 
 De ce jeu, nous devons construire un modèle de machine learning adéquat afin de détecter la véracité d'un billet donné hors de ce jeu initial.
 
 J'ai donc développé un script en python qui a plusieurs résultats : un modèle de regression logistique afin de prédire la valeur du billet (Vrai ou Faux) en fonction des différentes variables à disposition.
 J'ai également développé à la suite de ce script une web app grâce à streamlit, via jupyter notebook
+
+__________________________________________________________________________________________________________
 
 Les différentes sources de données produites durant ce projet sont présentes sous 'Source' dans ce dépôt.
 
@@ -31,8 +33,9 @@ Les différentes parties de code produites durant ce projet sont présentes sous
 
 Afin de vous permettre de tester la web app vous-mêmes, vous pouvez à n'importe quel moment y accéder via ce lien :
 
-https://kevinb-data-detection-billets-web-app-v2-c3vj01.streamlit.app/
-
+##########################################################################
+# https://kevinb-data-detection-billets-web-app-v2-c3vj01.streamlit.app/ #
+##########################################################################
 Il vous faudra également y déposer le fichier 'dataframe_final_20230530.csv' dans le dossier 'Sources' de ce dépôt ainsi que le modèle nommé 'modele_regression.joblib' dans le dossier 'Code' de ce dépôt.
 
 Grâce au modèle de prédiction, vous pourrez alors utiliser les boutons à disposition dans la web application afin d'être en mesure de découvrir si votre billet, en fonction des valeurs en entrée que vous lui avez imputées, est vrai ou faux
