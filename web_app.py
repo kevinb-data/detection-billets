@@ -60,7 +60,7 @@ df_=user_input()
 
 st.subheader('On veut trouver si notre billet (avec les caractéristiques suivantes) est vrai ou faux')
 st.write(df_.iloc[:,0:6])
-st.write(df_)
+st.write(df)
 
 
 st.subheader('La prédiction du billet est:')
