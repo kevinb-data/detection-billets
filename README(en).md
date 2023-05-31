@@ -45,6 +45,9 @@ In order to allow you to test the web app yourself, you can access it at any tim
 
 __________________________________________________________________________________________________________
 
-You will also need to upload the 'dataframe_final_20230530.csv' file present in the 'Sources' folder of this repository as well as the model named 'modele_regression.joblib' present in the 'Code' folder of this repository.
+You will need to download two files and drop them on the web app:
+
+- 'dataframe_final_20220530.csv' (under the 'Sources' folder of this repository)
+- 'modele_regression.joblib' (under the 'Code' folder of this repository)
 
 Thanks to the prediction model and the web application, you can then use the buttons available to be able to find out if your banknote, according to the input values ​​you have assigned to it, is true or false.
