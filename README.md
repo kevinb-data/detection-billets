@@ -45,6 +45,9 @@ Afin de vous permettre de tester la web app vous-même, vous pouvez à n'importe
 
 __________________________________________________________________________________________________________
 
-Il vous faudra également y déposer le fichier 'dataframe_final_20230530.csv' présent dans le dossier 'Sources' de ce dépôt ainsi que le modèle nommé 'modele_regression.joblib' présent dans le dossier 'Code' de ce dépôt.
+Vous aurez besoin de télécharger deux fichiers et de les déposer sur la web app : 
+- 'dataframe_final_20220530.csv' (sous le dossier 'Sources' de ce dépôt)
+- 'modele_regression.joblib' (sous le dossier 'Code' de ce dépôt)
+
 
 Grâce au modèle de prédiction et à la web application, vous pourrez alors utiliser les boutons à disposition afin d'être en mesure de découvrir si votre billet, en fonction des valeurs en entrée que vous lui avez imputées, est vrai ou faux
